@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../widgets/user_drawer.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/cow_head_icon.dart';
@@ -11,6 +11,7 @@ class Animal {
   final String imagePath;
   final String status;
   final String todayYield;
+  final String lastCheckup;
   final String location;
 
   const Animal({
@@ -21,6 +22,7 @@ class Animal {
     this.imagePath = 'assets/images/holstein_friesian.png',
     this.status = 'Pregnant',
     this.todayYield = '34.2 Liters',
+    this.lastCheckup = '2 Days ago',
     this.location = 'Stable Block A | Pen 04',
   });
 }

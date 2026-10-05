@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../widgets/user_drawer.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/cow_head_icon.dart';
@@ -24,24 +24,65 @@ class _BreedCatalogScreenState extends State<BreedCatalogScreen> {
 
   final List<String> _filters = ['All Breeds', 'Cattle Breeds', 'Buffalo Breeds'];
 
+  static final List<Breed> _defaultBreeds = [
+    Breed(
+      id: 1,
+      animalTypeId: 1,
+      name: 'Gir Cow',
+      description:
+          'The Gir is one of the principal Zebu breeds originating in India. Known for its high tolerance to tropical heat and resistance to diseases, it produces A2 nutrient-rich milk.',
+      animalTypeName: 'Cow',
+    ),
+    Breed(
+      id: 2,
+      animalTypeId: 1,
+      name: 'Holstein Friesian',
+      description:
+          'Holstein Friesian cattle are the highest-production dairy animals in the world. Recognizable by distinctive black-and-white markings, ideal for high yield operations.',
+      animalTypeName: 'Cow',
+    ),
+    Breed(
+      id: 3,
+      animalTypeId: 1,
+      name: 'Jersey Purebred',
+      description:
+          'Jerseys are famous for high butterfat content in milk and lower maintenance costs due to smaller body mass and superior feed conversion efficiency.',
+      animalTypeName: 'Cow',
+    ),
+    Breed(
+      id: 4,
+      animalTypeId: 2,
+      name: 'Murrah Buffalo',
+      description:
+          'Murrah is the premier water buffalo breed of India, originating from Haryana and Punjab. Known for jet-black coats and high butterfat milk.',
+      animalTypeName: 'Buffalo',
+    ),
+  ];
+
   // ── State ──
-  List<Breed> _breeds = [];
-  bool _loading = true;
+  late List<Breed> _breeds;
+  bool _loading = false;
   String? _error;
 
   @override
   void initState() {
     super.initState();
+    _breeds = List<Breed>.from(_defaultBreeds);
     _loadBreeds();
   }
 
   Future<void> _loadBreeds() async {
     try {
-      setState(() { _loading = true; _error = null; });
       final breeds = await apiService.getBreeds();
-      if (mounted) setState(() { _breeds = breeds; _loading = false; });
-    } catch (e) {
-      if (mounted) setState(() { _error = e.toString(); _loading = false; });
+      if (mounted && breeds.isNotEmpty) {
+        final existingNames = _defaultBreeds.map((b) => b.name.toLowerCase()).toSet();
+        final newBreeds = breeds.where((b) => !existingNames.contains(b.name.toLowerCase())).toList();
+        setState(() {
+          _breeds = [..._defaultBreeds, ...newBreeds];
+        });
+      }
+    } catch (_) {
+      // Keep static breeds gracefully
     }
   }
 
