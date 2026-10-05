@@ -119,7 +119,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> with SingleTickerPr
       'avatar': 'RS'
     },
     {
-      'name': 'Dr. Suresh Mehta',
+      'name': 'Dr. Suresh Meht',
       'role': 'Chief Veterinarian',
       'phone': '+91 98123 45678',
       'shift': 'On-Call / Daily Visit',
@@ -1982,7 +1982,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> with SingleTickerPr
                                         if (isEdit) {
                                           final updated =
                                               await apiService.updateFarm(
-                                            farmData!['id'] as int,
+                                            farmData['id'] as int,
                                             payload,
                                           );
                                           if (mounted && index != null) {
