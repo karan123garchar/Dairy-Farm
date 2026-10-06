@@ -1156,8 +1156,6 @@ class _AnimalDetailScreenState extends State<AnimalDetailScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildWeeklyChart(yieldValue),
-        const SizedBox(height: 14),
         _buildMilkStatsGrid(),
         const SizedBox(height: 14),
         Container(
@@ -1195,81 +1193,6 @@ class _AnimalDetailScreenState extends State<AnimalDetailScreen> {
     );
   }
 
-  Widget _buildWeeklyChart(String yieldValue) {
-    final double todayVal = double.tryParse(yieldValue) ?? 34.2;
-    final data = [32.4, todayVal, 31.8, 33.0, 35.1, 32.9, 34.0];
-    final labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE5E7EB), width: 1),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Weekly Production Trend (L)',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF111827),
-            ),
-          ),
-          const SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: List.generate(data.length, (index) {
-              final yieldVal = data[index];
-              final isToday = index == 1; // Tue
-              final height = (yieldVal / 40.0) * 110.0;
-
-              return Column(
-                children: [
-                  Text(
-                    yieldVal.toStringAsFixed(1),
-                    style: TextStyle(
-                      fontSize: 9.5,
-                      fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
-                      color: isToday ? const Color(0xFF0C3823) : const Color(0xFF6B7280),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Container(
-                    width: 20,
-                    height: height,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: isToday
-                            ? [const Color(0xFF2D6A4F), const Color(0xFF0C3823)]
-                            : [const Color(0xFFD1FAE5), const Color(0xFF6EE7B7)],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      ),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    labels[index],
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: isToday ? FontWeight.bold : FontWeight.w500,
-                      color: isToday ? const Color(0xFF0C3823) : const Color(0xFF6B7280),
-                    ),
-                  ),
-                ],
-              );
-            }),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildMilkStatsGrid() {
     return Column(

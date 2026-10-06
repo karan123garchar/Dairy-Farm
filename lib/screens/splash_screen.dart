@@ -107,7 +107,7 @@ class _SplashScreenState extends State<SplashScreen>
                       ),
                       child: ClipOval(
                         child: Image.asset(
-                          'assets/images/krishna_logo.png',
+                          'assets/images/dairy_logo.png',
                           fit: BoxFit.contain,
                           errorBuilder: (_, __, ___) => const Center(
                             child: Text(
