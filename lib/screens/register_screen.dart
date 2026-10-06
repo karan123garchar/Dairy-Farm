@@ -103,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           Positioned.fill(
             child: Container(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
             ),
           ),
 
@@ -125,7 +125,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.15),
+                            color: Colors.black.withValues(alpha: 0.15),
                             blurRadius: 10,
                             offset: const Offset(0, 5),
                           ),
@@ -174,7 +174,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.15),
+                            color: Colors.black.withValues(alpha: 0.15),
                             blurRadius: 16,
                             offset: const Offset(0, 8),
                           ),
@@ -413,10 +413,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           strokeWidth: 2,
                                         ),
                                       )
-                                    : Row(
+                                    : const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: const [
+                                        children: [
                                           Text(
                                             'Create Account',
                                             style: TextStyle(

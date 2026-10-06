@@ -63,9 +63,9 @@ class AboutScreen extends StatelessWidget {
             _buildSectionCard(
               title: 'Our Legacy & Mission',
               icon: Icons.history_edu,
-              content: Column(
+              content: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
                     'Established in 1998 in Pune, Maharashtra, Krishna Dairy Farm has grown from a humble family farm into a premier smart dairy enterprise. We are committed to uncompromised milk purity, humane animal welfare, and sustainable organic farming.',
                     style: TextStyle(
@@ -278,9 +278,9 @@ class AboutScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Icon(Icons.star, color: Color(0xFFFBBF24), size: 16),
               SizedBox(width: 4),
               Text(

@@ -15,7 +15,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   String _userName = 'Rahul Sharma';
-  String _userRole = 'Verified Customer Account';
+  final String _userRole = 'Verified Customer Account';
   String _userPhone = '+91 98765 43210';
   String _userLocation = 'Pune, Maharashtra';
   bool _notificationsEnabled = true;
@@ -303,9 +303,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               borderRadius: BorderRadius.circular(20),
               border: Border.all(color: const Color(0xFFFDE68A), width: 1),
             ),
-            child: Row(
+            child: const Row(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 Icon(Icons.workspace_premium_rounded, size: 15, color: Color(0xFFB45309)),
                 SizedBox(width: 6),
                 Text(
@@ -630,11 +630,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: InkWell(
           onTap: () => _showLogoutDialog(),
           borderRadius: BorderRadius.circular(16),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 14),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 14),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Icon(Icons.logout_rounded, color: Color(0xFFDC2626), size: 20),
                 SizedBox(width: 10),
                 Text(

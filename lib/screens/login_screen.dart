@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           Positioned.fill(
             child: Container(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
             ),
           ),
 
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.15),
+                            color: Colors.black.withValues(alpha: 0.15),
                             blurRadius: 10,
                             offset: const Offset(0, 5),
                           ),
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: 0.9),
                         shadows: const [
                           Shadow(
                             color: Colors.black45,
@@ -158,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.15),
+                            color: Colors.black.withValues(alpha: 0.15),
                             blurRadius: 16,
                             offset: const Offset(0, 8),
                           ),
@@ -401,8 +401,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             const SizedBox(height: 20),
 
                             // ── Divider ──
-                            Row(
-                              children: const [
+                            const Row(
+                              children: [
                                 Expanded(child: Divider(color: Color(0xFFE5E7EB), thickness: 1)),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 12),

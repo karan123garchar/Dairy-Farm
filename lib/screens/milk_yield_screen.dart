@@ -35,8 +35,8 @@ class MilkYieldScreen extends StatefulWidget {
 }
 
 class _MilkYieldScreenState extends State<MilkYieldScreen> {
-  double _todayMorningLiters = 260.0;
-  double _todayEveningLiters = 222.5;
+  final double _todayMorningLiters = 260.0;
+  final double _todayEveningLiters = 222.5;
 
   static const Color _primaryGreen = Color(0xFF0C3823);
   static const Color _bg = Color(0xFFEFF6F1);
@@ -151,9 +151,9 @@ class _MilkYieldScreenState extends State<MilkYieldScreen> {
       color: Colors.white,
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
             'Milk Yield Analytics',
             style: TextStyle(
@@ -377,10 +377,10 @@ class _MilkYieldScreenState extends State<MilkYieldScreen> {
             ),
           ),
           const SizedBox(height: 8),
-          Row(
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
-            children: const [
+            children: [
               Text(
                 '6,450.0 L',
                 style: TextStyle(

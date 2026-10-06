@@ -953,9 +953,9 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> with SingleTickerPr
               elevation: 0,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: const BorderSide(color: Color(0xFFE5E7EB))),
               child: ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: const Color(0xFFE0F2FE),
-                  child: const Icon(Icons.water_drop, color: Color(0xFF0284C7), size: 20),
+                leading: const CircleAvatar(
+                  backgroundColor: Color(0xFFE0F2FE),
+                  child: Icon(Icons.water_drop, color: Color(0xFF0284C7), size: 20),
                 ),
                 title: Text('${log['session']} (${log['time']})', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
                 subtitle: Text('${log['cows']} Animals â€¢ Fat Rate ${log['fat']}', style: const TextStyle(fontSize: 12, color: _textMuted)),
@@ -1524,7 +1524,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> with SingleTickerPr
                       Icon(Icons.store_outlined,
                           size: 60, color: _textMuted.withValues(alpha: 0.4)),
                       const SizedBox(height: 12),
-                      Text(
+                      const Text(
                         'No farms found',
                         style: TextStyle(
                             fontSize: 16,
@@ -1942,7 +1942,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> with SingleTickerPr
                                     value: isActive,
                                     onChanged: (v) =>
                                         setSheet(() => isActive = v),
-                                    activeColor: _primaryGreen,
+                                    activeThumbColor: _primaryGreen,
                                     activeTrackColor:
                                         const Color(0xFF86EFAC),
                                   ),
@@ -1960,7 +1960,9 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> with SingleTickerPr
                                   ? null
                                   : () async {
                                       if (!formKey.currentState!
-                                          .validate()) return;
+                                          .validate()) {
+                                        return;
+                                      }
                                       setSheet(() => saving = true);
                                       final payload = {
                                         'name': nameCtrl.text.trim(),

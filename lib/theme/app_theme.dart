@@ -100,7 +100,7 @@ class AppTheme {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
-          side: BorderSide(color: divider, width: 1),
+          side: const BorderSide(color: divider, width: 1),
         ),
         margin: EdgeInsets.zero,
       ),
@@ -160,15 +160,15 @@ class AppTheme {
       ),
 
       // ── Chip ────────────────────────────────────────────
-      chipTheme: ChipThemeData(
+      chipTheme: const ChipThemeData(
         backgroundColor: accentSoft,
-        labelStyle: const TextStyle(
+        labelStyle: TextStyle(
           color: primary,
           fontSize: 12,
           fontWeight: FontWeight.w600,
         ),
         side: BorderSide.none,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       ),
     );
   }

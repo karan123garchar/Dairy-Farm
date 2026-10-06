@@ -88,8 +88,8 @@ class _HealthScreenState extends State<HealthScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: const [
+                  const Row(
+                    children: [
                       Icon(Icons.warning_amber_rounded, size: 16, color: Color(0xFFDC2626)),
                       SizedBox(width: 6),
                       Text(
@@ -222,9 +222,9 @@ class _HealthScreenState extends State<HealthScreen> {
       color: Colors.white,
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
             'Health & Vaccination',
             style: TextStyle(
@@ -256,17 +256,17 @@ class _HealthScreenState extends State<HealthScreen> {
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: const Color(0xFFE5E7EB), width: 1),
       ),
-      child: Row(
+      child: const Row(
         children: [
           CircleAvatar(
             radius: 20,
-            backgroundColor: const Color(0xFFD1FAE5),
-            child: const Icon(Icons.medical_services_outlined, size: 20, color: Color(0xFF059669)),
+            backgroundColor: Color(0xFFD1FAE5),
+            child: Icon(Icons.medical_services_outlined, size: 20, color: Color(0xFF059669)),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 'Dr. Amit Verma',
                 style: TextStyle(
@@ -305,17 +305,17 @@ class _HealthScreenState extends State<HealthScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
+              const Row(
                 children: [
                   CircleAvatar(
                     radius: 16,
-                    backgroundColor: const Color(0xFFFEE2E2),
-                    child: const Icon(Icons.sentiment_very_dissatisfied, size: 18, color: Color(0xFFDC2626)),
+                    backgroundColor: Color(0xFFFEE2E2),
+                    child: Icon(Icons.sentiment_very_dissatisfied, size: 18, color: Color(0xFFDC2626)),
                   ),
-                  const SizedBox(width: 10),
+                  SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         'Cow #HF-204',
                         style: TextStyle(
@@ -355,9 +355,9 @@ class _HealthScreenState extends State<HealthScreen> {
           const SizedBox(height: 14),
 
           // Details Row
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
                 'Isolation: Required',
                 style: TextStyle(
@@ -426,17 +426,17 @@ class _HealthScreenState extends State<HealthScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
+              const Row(
                 children: [
                   CircleAvatar(
                     radius: 16,
-                    backgroundColor: const Color(0xFFFEF3C7),
-                    child: const Icon(Icons.thermostat, size: 18, color: Color(0xFFD97706)),
+                    backgroundColor: Color(0xFFFEF3C7),
+                    child: Icon(Icons.thermostat, size: 18, color: Color(0xFFD97706)),
                   ),
-                  const SizedBox(width: 10),
+                  SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         'Buffalo #M-102',
                         style: TextStyle(
@@ -476,9 +476,9 @@ class _HealthScreenState extends State<HealthScreen> {
           const SizedBox(height: 14),
 
           // Details Row
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
                 'Temp: 80.5° c',
                 style: TextStyle(
@@ -611,10 +611,10 @@ class _HealthScreenState extends State<HealthScreen> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 18,
-                backgroundColor: const Color(0xFFD1FAE5),
-                child: const Icon(Icons.vaccines, size: 18, color: Color(0xFF059669)),
+                backgroundColor: Color(0xFFD1FAE5),
+                child: Icon(Icons.vaccines, size: 18, color: Color(0xFF059669)),
               ),
               const SizedBox(width: 12),
               Expanded(

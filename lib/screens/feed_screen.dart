@@ -199,10 +199,10 @@ class _FeedScreenState extends State<FeedScreen> {
             child: const Icon(Icons.grass_outlined, color: _primaryGreen, size: 28),
           ),
           const SizedBox(width: 14),
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Krishna Feed & Nutrition',
                   style: TextStyle(
@@ -348,11 +348,11 @@ class _FeedScreenState extends State<FeedScreen> {
           ),
         ],
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: const [
+            children: [
               Icon(Icons.analytics_outlined, color: _primaryGreen, size: 20),
               SizedBox(width: 8),
               Text(
@@ -365,18 +365,18 @@ class _FeedScreenState extends State<FeedScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 14),
+          SizedBox(height: 14),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text('Monthly Spent (Est.)', style: TextStyle(fontSize: 13, color: Color(0xFF6B7280))),
               Text('₹ 1,45,000', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xFF111827))),
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text('Cost per Litre Milk', style: TextStyle(fontSize: 13, color: Color(0xFF6B7280))),
               Text('₹ 22.4 / L', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xFF15803D))),
             ],
