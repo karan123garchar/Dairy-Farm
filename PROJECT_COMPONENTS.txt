@@ -1,0 +1,606 @@
+﻿================================================================================
+       KRISHNA DAIRY FARM — FLUTTER PROJECT COMPONENTS REFERENCE
+================================================================================
+App Name   : Krishna Dairy Farm
+Framework  : Flutter (Material 3)
+Font       : Poppins
+Language   : Dart
+
+
+================================================================================
+  1. PROJECT FOLDER STRUCTURE
+================================================================================
+
+lib/
+ ├── main.dart                        → App entry point, routes
+ ├── theme/
+ │    └── app_theme.dart              → Global colors, ThemeData
+ ├── screens/
+ │    ├── splash_screen.dart          → Launch/loading screen
+ │    ├── login_screen.dart           → User login form
+ │    ├── register_screen.dart        → New user registration form
+ │    ├── home_screen.dart            → Main dashboard
+ │    ├── animal_listing_screen.dart  → List of all animals
+ │    ├── animal_detail_screen.dart   → Single animal detail (tabs)
+ │    ├── animal_gallery_screen.dart  → Photo/video gallery of animals
+ │    ├── breed_catalog_screen.dart   → Breed information catalog
+ │    ├── milk_yield_screen.dart      → Milk production and analytics
+ │    ├── health_screen.dart          → Animal health records
+ │    ├── feed_screen.dart            → Feed and nutrition management
+ │    ├── products_screen.dart        → Farm products screen
+ │    ├── profile_screen.dart         → User profile and settings
+ │    ├── about_screen.dart           → About the farm/app
+ │    └── admin_panel_screen.dart     → Admin-only management panel
+ ├── widgets/
+ │    ├── bottom_nav_bar.dart         → Bottom navigation bar widget
+ │    ├── user_drawer.dart            → Side drawer for regular users
+ │    ├── admin_drawer.dart           → Side drawer for admin users
+ │    ├── app_drawer.dart             → General app drawer
+ │    └── cow_head_icon.dart          → Custom cow head icon widget
+ ├── models/
+ │    ├── animal_model.dart           → Animal data model
+ │    ├── breed_model.dart            → Breed data model
+ │    ├── farm_model.dart             → Farm data model
+ │    ├── gallery_model.dart          → Gallery item model
+ │    ├── health_model.dart           → Health record model
+ │    ├── milk_model.dart             → Milk yield data model
+ │    └── user_model.dart             → User/auth model
+ ├── services/
+ │    └── api_service.dart            → API calls / backend service
+ └── utils/
+      ├── smooth_page_route.dart      → Custom page transition animation
+      └── user_session.dart           → Global user session (isAdmin etc.)
+
+
+================================================================================
+  2. APP ROUTES (Navigation)
+================================================================================
+
+  Route             Screen
+  -------------------------------------------------
+  /               → SplashScreen
+  /login          → LoginScreen
+  /register       → RegisterScreen
+  /home           → HomeScreen
+  /animals        → AnimalListingScreen
+  /breeds         → BreedCatalogScreen
+  /gallery        → AnimalGalleryScreen
+  /profile        → ProfileScreen
+  /about          → AboutScreen
+  /admin          → AdminPanelScreen
+
+  NOTE: AnimalDetailScreen, MilkYieldScreen, HealthScreen,
+        FeedScreen, ProductsScreen are opened via
+        Navigator.push() (not named routes).
+
+
+================================================================================
+  3. COLOR PALETTE (AppTheme)
+================================================================================
+
+  Name              Hex Code     Usage
+  -----------------------------------------------------------------
+  primary           #0C3823      Main brand green (AppBar, buttons)
+  primaryDark       #072718      Dark banner backgrounds
+  primaryMid        #1F5C38      Mid-shade containers
+  primaryLight      #2D6A4F      Lighter green accents
+  accent            #22C55E      Bright leaf green (highlights)
+  accentLight       #86EFAC      Mint green (progress bars)
+  accentSoft        #D1FAE5      Very light mint (chips, tags)
+  scaffoldBg        #EFF6F1      Page background (warm mint tint)
+  cardBg            #FFFFFF      Card/container background
+  sectionBg         #F4FAF6      Slightly tinted section background
+  appBarBg          #0C3823      AppBar background
+  appBarFg          #FFFFFF      AppBar icons and title
+  navBarBg          #0C3823      Bottom nav background
+  navBarSelected    #D1FAE5      Selected nav item pill
+  navBarUnselected  #B0C9BB      Unselected nav icons
+  textDark          #1F2937      Primary body text
+  textMid           #374151      Secondary text
+  textGrey          #6B7280      Hint/label text
+  textLight         #9CA3AF      Placeholder/disabled text
+  divider           #DDECE4      Dividers and borders
+
+
+================================================================================
+  4. TYPOGRAPHY
+================================================================================
+
+  Font Family : Poppins (global, defined in pubspec.yaml)
+
+  Font Sizes used in this project:
+  -------------------------------------------------
+  8.5     → Small badge/tag text
+  9-10    → Tiny labels, chart values
+  10.5    → Section labels (UPPERCASE with letterSpacing)
+  11      → Timestamps, captions, secondary info
+  11.5    → Small body text, pills
+  12-12.5 → Normal small text
+  13      → Standard body / list items
+  13.5    → Slightly larger body text
+  14      → Button text
+  15      → Card titles, sub-headings
+  16      → AppBar title, section headers
+  17      → Card heading large
+  20      → Hero name overlay text
+  22      → Screen headings
+  28      → Large stat numbers
+  34      → XL yield/stat values
+
+  Font Weights used:
+  -------------------------------------------------
+  FontWeight.w400  → Regular body
+  FontWeight.w500  → Medium (tab labels)
+  FontWeight.w600  → Semi-bold (pills, captions)
+  FontWeight.w700  → Bold (AppBar, section titles)
+  FontWeight.w800  → Extra bold (uppercase labels)
+  FontWeight.w900  → Black/Heavy (big numbers)
+  FontWeight.bold  → Standard bold (card titles)
+
+
+================================================================================
+  5. SCREENS — WHAT EACH SCREEN CONTAINS
+================================================================================
+
+-- SplashScreen ---------------------------------------------------------------
+  • Full-screen animated intro (logo + brand name)
+  • Auto-navigates to /login after delay
+
+-- LoginScreen ----------------------------------------------------------------
+  • Email + Password TextFields
+  • ElevatedButton "Login"
+  • TextButton "Register" navigation
+  • Logo / brand header
+  • Admin / User role detection
+
+-- RegisterScreen -------------------------------------------------------------
+  • Name, Email, Password, Confirm Password TextFields
+  • ElevatedButton "Create Account"
+  • TextButton "Already have an account? Login"
+
+-- HomeScreen -----------------------------------------------------------------
+  • AppBar with menu (Drawer) + profile icon
+  • Hero banner section
+  • Stats summary cards (total animals, today yield, etc.)
+  • Quick action buttons / grid
+  • Recent activity section
+  • BottomNavBar
+
+-- AnimalListingScreen --------------------------------------------------------
+  • AppBar with search icon
+  • Search/filter bar
+  • ListView or GridView of animal cards
+  • Each card: animal image, name, tag ID, breed, status badge
+  • Tap → navigates to AnimalDetailScreen
+  • BottomNavBar
+
+-- AnimalDetailScreen ---------------------------------------------------------
+  TABS: Overview | Gallery | Milk Production | Health Record
+
+  Hero Header:
+    • Full-width animal image (240px height)
+    • Gradient overlay (dark bottom)
+    • "Elite Producer" badge pill
+    • Tag ID pill
+    • Animal name (bold white text)
+    • Location/stable text below name
+
+  Tab 1 — Overview:
+    • Specs Grid (2x2): Age, Weight, Breed, Status
+    • Daily Average Yield Banner (dark green card with big number)
+    • Health Summary Card (LinearProgressIndicator + score)
+    • Genetic Markers Card (Wrap of chip tags)
+    • Recent Activity Card (timeline with icon + title + time)
+
+  Tab 2 — Gallery:
+    • 2-column GridView of media cards
+    • Each card: image, tag badge (top-left), title (bottom)
+    • Video cards: red VIDEO badge + duration + play button overlay
+    • Tap → fullscreen media viewer dialog
+    • Viewer: InteractiveViewer (pinch to zoom), play/pause toggle
+    •         Slider for video progress, share/download/info buttons
+
+  Tab 3 — Milk Production:
+    • Milk Stats Grid (2x2):
+        - Avg Fat Content
+        - Avg Protein
+        - Days in Milk (DIM)
+        - Total Lactation
+    • Recent Milking History list:
+        - Today, Yesterday, 2 days ago, 3 days ago
+        - Each row: day label + AM/PM sessions + total liters
+
+  Tab 4 — Health Record:
+    • Vitals Grid (temperature, heart rate, etc.)
+    • Vaccination Status list (Brucellosis, Anthrax, FMD)
+    • Veterinary Consultation Log (date, title, notes, vet name)
+
+-- AnimalGalleryScreen --------------------------------------------------------
+  • Search bar at top
+  • Category filter chips (All, Anatomical, Routine, Health)
+  • GridView of media items (photos + videos)
+  • Video items: play overlay + duration badge
+  • Tap → fullscreen viewer dialog
+
+-- BreedCatalogScreen ---------------------------------------------------------
+  • List of cattle/buffalo breeds
+  • Each card: breed image, name, origin, avg yield, traits
+  • Info chips / tags for breed characteristics
+
+-- MilkYieldScreen ------------------------------------------------------------
+  • AppBar with chart icon button (snackbar action)
+  • Header section (title + subtitle)
+  • Today's Production Card:
+      - Morning and Evening session boxes (with icons)
+      - Total liters (large bold number)
+      - Percentage change badge (+4.2% from yesterday)
+  • Month-to-Date dark card:
+      - Total liters produced
+      - LinearProgressIndicator (72% of monthly goal)
+      - Progress text label
+  • Milk Quality and Fat Metrics Card:
+      - Avg Fat Content 8.2%
+      - Avg SNF Level 8.8%
+      - Chilled Storage Temp 4.0C
+  • Top Performing Cattle Card:
+      - Animal image + name + tag + avg yield + star icon
+
+-- HealthScreen ---------------------------------------------------------------
+  • Health summary stats cards
+  • Animal health status list
+  • Vaccination schedule
+  • Alert/warning cards for sick animals
+
+-- FeedScreen -----------------------------------------------------------------
+  • Feed inventory list
+  • Daily feed schedule per animal/group
+  • Nutrition info cards
+
+-- ProductsScreen -------------------------------------------------------------
+  • Farm product listings
+  • Product cards with image, name, price, details
+
+-- ProfileScreen --------------------------------------------------------------
+  • User avatar + name + role badge
+  • Profile info fields (name, email, phone)
+  • Settings options list
+  • Logout button
+
+-- AboutScreen ----------------------------------------------------------------
+  • Farm name and logo
+  • Farm description text
+  • Contact info (address, phone, email)
+  • App version info
+
+-- AdminPanelScreen -----------------------------------------------------------
+  • Admin-only full dashboard
+  • User management section (list + add/edit/delete users)
+  • Animal CRUD (Add/Edit/Delete animals)
+  • Reports and analytics sections
+  • System settings controls
+
+
+================================================================================
+  6. REUSABLE WIDGETS
+================================================================================
+
+-- DairyBottomNavBar (bottom_nav_bar.dart) ------------------------------------
+  Usage  : const DairyBottomNavBar(selectedIndex: 0)
+  Items  : Home | Animals | Milk | Health | Profile
+  Style  : Dark green background (#0C3823), mint selected pill
+  Note   : Pass selectedIndex: -1 to highlight nothing
+  Index  : 0=Home, 1=Animals, 2=Milk, 3=Health, 4=Profile
+
+-- UserDrawer (user_drawer.dart) ----------------------------------------------
+  Usage  : drawer: const UserDrawer()
+  Items  : Home, Animals, Milk Production, Health,
+           Feed, Products, Gallery, Breeds, About, Logout
+  Style  : Green header with farm logo + username
+
+-- AdminDrawer (admin_drawer.dart) --------------------------------------------
+  Usage  : drawer: const AdminDrawer()
+  Items  : All UserDrawer items + Admin Panel link at top
+  Only shown when globalUserSession.isAdmin == true
+
+-- AppDrawer (app_drawer.dart) ------------------------------------------------
+  General purpose drawer (used in some screens as alternative)
+
+-- CowHeadIcon (cow_head_icon.dart) -------------------------------------------
+  Usage  : CowHeadIcon(size: 40, color: Colors.white)
+  Desc   : Custom cow head icon (drawn with CustomPainter or SVG)
+  Params : size (double), color (Color)
+  Used   : Image error fallbacks, loading states, nav icons
+
+
+================================================================================
+  7. BUTTONS USED IN THIS PROJECT
+================================================================================
+
+  Type              Usage Example / Where Used
+  -----------------------------------------------------------------
+  ElevatedButton    Login, Register, Save, Confirm actions
+  TextButton        "Forgot Password?", "View Full History", links
+  IconButton        AppBar menu, close dialog, play/pause, share
+  GestureDetector   Tab bar items, gallery cards, list tiles
+  InkWell           Ripple tap on custom container tiles
+  OutlinedButton    Secondary actions in some screens
+  Chip/FilterChip   Category filters in Gallery and Breed screens
+  FloatingActionButton  Add animal / add record (Admin panel)
+
+
+================================================================================
+  8. INPUT FIELDS USED
+================================================================================
+
+  Widget              Used In
+  --------------------------------------------------
+  TextField           Search bars (Animal list, Gallery)
+  TextFormField       Login, Register, Profile edit forms
+  Slider              Video playback progress in Gallery viewer
+  Switch              Toggle settings in Admin panel
+  DropdownButton      Status/breed selectors in Admin panel
+  Checkbox            Multi-select options in Admin panel
+  DatePicker          Health record and vaccination dates
+
+
+================================================================================
+  9. LAYOUT WIDGETS USED
+================================================================================
+
+  Widget                  Purpose
+  ------------------------------------------------------------
+  Scaffold                Base screen structure (required)
+  AppBar                  Top navigation bar
+  SingleChildScrollView   Makes screen body scrollable
+  Column                  Vertical stack of widgets
+  Row                     Horizontal stack of widgets
+  Stack                   Overlapping widgets (used in hero)
+  Positioned              Absolute position inside Stack
+  Expanded                Fill remaining space in Row/Column
+  Flexible                Flexible proportional space
+  Padding                 Add spacing/margin around widgets
+  SizedBox                Fixed spacing between widgets
+  Container               Box with color, padding, decoration
+  Card                    Material card (uses CardTheme)
+  Wrap                    Wraps chips/tags to next line
+  GridView.builder        2-column animal/gallery grids
+  ListView.builder        Long scrollable lists
+  GridView (shrinkWrap)   Inline non-scrolling grids
+  SafeArea                Avoids system UI overlap (notch/nav)
+  Center                  Center a child widget
+  Align                   Custom child alignment
+  ClipRRect               Clips child to rounded rectangle
+  InteractiveViewer       Pinch-zoom and pan (gallery viewer)
+  StatefulBuilder         Local state inside showDialog()
+  Dialog.fullscreen       Full-screen dialog (gallery viewer)
+
+
+================================================================================
+  10. DECORATION AND STYLING
+================================================================================
+
+  BoxDecoration properties used in this project:
+  -----------------------------------------------
+  color          → Solid fill color
+  borderRadius   → Rounded corners (BorderRadius.circular(N))
+  border         → Outline (Border.all(color: ..., width: 1))
+  gradient       → LinearGradient (hero, banners, bars)
+  boxShadow      → Drop shadows on cards
+  shape          → BoxShape.circle for circular avatars
+
+  Common border radius values:
+  ----------------------------
+  4    → Tiny elements (bar corners, small chips)
+  8    → Small tags and badges
+  10   → Small cards and vitals tiles
+  12   → Standard cards (most cards)
+  14   → Large inputs and hero cards
+  16   → Section-level large cards
+  20   → Avatar clips (CircleAvatar radius: 20)
+  circular → Full pill shapes (BorderRadius.circular(100))
+
+  Gradients used:
+  ---------------
+  Hero image overlay     : Black transparent, top to bottom
+  Dark yield banner      : Deep green shades, top to bottom
+  Gallery card overlay   : Black multi-stop (dark top + dark bottom)
+  Top-highlight gradient : Light to dark green (bars/buttons)
+
+
+================================================================================
+  11. IMAGES AND ASSETS
+================================================================================
+
+  Asset Path                              Description
+  -----------------------------------------------------------
+  assets/images/holstein_friesian.png     Holstein Friesian cow
+  assets/images/jersey_cow.png            Jersey cow
+  assets/images/gir_cow.png              Gir / Sahiwal cow
+  assets/images/murrah_buffalo.png        Murrah buffalo
+  assets/images/farm_hero_banner.png      Farm landscape hero
+  assets/images/farm_animals.png          Herd / group image
+
+  All images use:
+  • Image.asset(path, fit: BoxFit.cover)
+  • errorBuilder fallback: CowHeadIcon or colored Container
+
+
+================================================================================
+  12. NAVIGATION PATTERNS
+================================================================================
+
+  Pattern                 Code
+  -----------------------------------------------------------
+  Named route push        Navigator.pushNamed(context, '/home')
+  Named route replace     Navigator.pushReplacementNamed(context, '/login')
+  Push widget             Navigator.push(context, SmoothPageRoute(builder: (_) => Screen()))
+  Pop (go back)           Navigator.pop(context)
+  Show Dialog             showDialog(context: context, builder: (_) => Dialog(...))
+  Show BottomSheet        showModalBottomSheet(context: context, builder: ...)
+
+  Custom Page Transition : SmoothPageRoute (smooth_page_route.dart)
+  → Used for: AnimalDetailScreen, MilkYieldScreen, and similar screens
+
+
+================================================================================
+  13. STATE MANAGEMENT
+================================================================================
+
+  Method            Used For
+  -----------------------------------------------------------
+  setState()        All local UI state (tab selection, toggles,
+                    form values, play/pause in dialogs)
+  StatefulBuilder   State inside showDialog() for dialog-local state
+  No external lib   No Provider / Bloc / Riverpod used.
+                    Pure Flutter local state only.
+
+
+================================================================================
+  14. DATA MODELS
+================================================================================
+
+  Model            Key Fields
+  -----------------------------------------------------------
+  Animal           name, tagId, breed, age, imagePath,
+                   status, todayYield, lastCheckup, location
+
+  BreedModel       name, origin, avgYield, traits (list)
+
+  FarmModel        farmName, location, ownerName, totalAnimals
+
+  GalleryMediaItem id, title, tag, imagePath, isVideo,
+                   duration, category
+
+  HealthModel      animalId, date, diagnosis, treatment, vet
+
+  MilkModel        animalId, date, morningLiters, eveningLiters
+
+  UserModel        name, email, role (admin/user), phone
+
+
+================================================================================
+  15. UTILITIES
+================================================================================
+
+  File                   Purpose
+  -----------------------------------------------------------
+  user_session.dart      globalUserSession object
+                         .isAdmin (bool) → controls which drawer
+                         and screens are accessible
+
+  smooth_page_route.dart Custom PageRouteBuilder for smooth
+                         slide/fade transitions between screens
+
+  api_service.dart       HTTP service for API calls
+                         GET/POST/PUT/DELETE for animals,
+                         milk records, health data
+
+
+================================================================================
+  16. ADMIN vs USER ROLE DIFFERENCES
+================================================================================
+
+  Feature               User          Admin
+  --------------------------------------------------
+  Drawer shown          UserDrawer    AdminDrawer
+  Admin Panel Access    NO            YES
+  Add/Edit Animals      NO            YES
+  Delete Records        NO            YES
+  View All Screens      YES           YES
+  Manage Users          NO            YES
+  Session Check:        globalUserSession.isAdmin == false / true
+
+
+================================================================================
+  17. QUICK COPY — COMMON CODE PATTERNS
+================================================================================
+
+  -- Standard Screen Scaffold --
+  Scaffold(
+    drawer: const UserDrawer(),
+    backgroundColor: const Color(0xFFEFF6F1),
+    appBar: AppBar(title: const Text('Screen Title')),
+    body: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [ ... ],
+      ),
+    ),
+    bottomNavigationBar: const DairyBottomNavBar(selectedIndex: 0),
+  )
+
+  -- Standard White Card Container --
+  Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: const Color(0xFFE5E7EB), width: 1),
+    ),
+    child: ...,
+  )
+
+  -- Dark Green Banner Card --
+  Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(18),
+    decoration: BoxDecoration(
+      color: const Color(0xFF0C3823),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: ...,
+  )
+
+  -- Status Pill / Badge --
+  Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+    decoration: BoxDecoration(
+      color: const Color(0xFFD1FAE5),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: const Text(
+      'Active',
+      style: TextStyle(
+        color: Color(0xFF0C3823),
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  )
+
+  -- Uppercase Section Label --
+  const Text(
+    'SECTION LABEL',
+    style: TextStyle(
+      fontSize: 10.5,
+      fontWeight: FontWeight.w700,
+      color: Color(0xFF6B7280),
+      letterSpacing: 0.5,
+    ),
+  )
+
+  -- Navigate with SmoothPageRoute --
+  Navigator.push(
+    context,
+    SmoothPageRoute(builder: (_) => AnimalDetailScreen()),
+  );
+
+  -- Navigate and Replace (Login to Home) --
+  Navigator.pushReplacementNamed(context, '/home');
+
+  -- Show Full Screen Dialog (Gallery Viewer) --
+  showDialog(
+    context: context,
+    barrierColor: Colors.black87,
+    builder: (context) => Dialog.fullscreen(
+      backgroundColor: Colors.black,
+      child: SafeArea(child: ...),
+    ),
+  );
+
+
+================================================================================
+  END OF REFERENCE
+  Krishna Dairy Farm — Flutter Project Components Guide
+================================================================================
