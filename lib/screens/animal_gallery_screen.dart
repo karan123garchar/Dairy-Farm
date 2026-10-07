@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../widgets/user_drawer.dart';
 import '../widgets/bottom_nav_bar.dart';
 import '../widgets/cow_head_icon.dart';
@@ -26,75 +26,24 @@ class _AnimalGalleryScreenState extends State<AnimalGalleryScreen> {
   static const Color _primaryGreen = Color(0xFF0C3823);
   static const Color _bg = Color(0xFFEFF6F1);
 
-  static final List<GalleryItemModel> _defaultGalleryItems = [
-    GalleryItemModel(
-      id: 1,
-      imagePath: 'assets/images/holstein_friesian.png',
-      caption: 'Full Front Profile - Holstein Elite',
-      animalTag: 'BE-0842',
-      animalName: 'Bella',
-    ),
-    GalleryItemModel(
-      id: 2,
-      imagePath: 'assets/images/jersey_cow.png',
-      caption: 'Left Side Standing View - Jersey Purebred',
-      animalTag: 'COW-001',
-      animalName: 'Jersey Purebred',
-    ),
-    GalleryItemModel(
-      id: 3,
-      imagePath: 'assets/images/gir_cow.png',
-      caption: 'Morning Milking Routine - Gir Native',
-      animalTag: 'GIR-003',
-      animalName: 'Gir Cow',
-    ),
-    GalleryItemModel(
-      id: 4,
-      imagePath: 'assets/images/murrah_buffalo.png',
-      caption: 'Right Side Udder & Stature - Murrah Buffalo',
-      animalTag: 'BUF-014',
-      animalName: 'Murrah Buffalo',
-    ),
-    GalleryItemModel(
-      id: 5,
-      imagePath: 'assets/images/farm_animals.png',
-      caption: 'Herd Grazing in Pasture',
-      animalTag: 'HERD',
-      animalName: 'Pasture Herd',
-    ),
-    GalleryItemModel(
-      id: 6,
-      imagePath: 'assets/images/milk_production.png',
-      caption: 'Automated Milking Parlour',
-      animalTag: 'PARLOUR',
-      animalName: 'Facility',
-    ),
-  ];
-
-  late List<GalleryItemModel> _items;
-  bool _loading = false;
+  List<GalleryItemModel> _items = [];
+  bool _loading = true;
   String? _error;
   int? _selectedIndex;
 
   @override
   void initState() {
     super.initState();
-    _items = List<GalleryItemModel>.from(_defaultGalleryItems);
     _loadGallery();
   }
 
   Future<void> _loadGallery() async {
     try {
+      setState(() { _loading = true; _error = null; });
       final gallery = await apiService.getAnimalGallery();
-      if (mounted && gallery.isNotEmpty) {
-        final existingIds = _defaultGalleryItems.map((g) => g.imagePath).toSet();
-        final newItems = gallery.where((g) => !existingIds.contains(g.imagePath)).toList();
-        setState(() {
-          _items = [..._defaultGalleryItems, ...newItems];
-        });
-      }
-    } catch (_) {
-      // Keep static gallery items gracefully
+      if (mounted) setState(() { _items = gallery; _loading = false; });
+    } catch (e) {
+      if (mounted) setState(() { _error = e.toString(); _loading = false; });
     }
   }
 
@@ -371,16 +320,6 @@ class _AnimalGalleryScreenState extends State<AnimalGalleryScreen> {
             child: const Center(child: CircularProgressIndicator(strokeWidth: 2, color: _primaryGreen)),
           );
         },
-        errorBuilder: (_, __, ___) => Container(
-          color: _primaryGreen.withValues(alpha: 0.06),
-          child: const Center(child: CowHeadIcon(size: 50, color: Color(0x440C3823))),
-        ),
-      );
-    }
-    if (url.isNotEmpty) {
-      return Image.asset(
-        url,
-        fit: BoxFit.cover,
         errorBuilder: (_, __, ___) => Container(
           color: _primaryGreen.withValues(alpha: 0.06),
           child: const Center(child: CowHeadIcon(size: 50, color: Color(0x440C3823))),
